@@ -26,3 +26,22 @@ class Vector(object):
         x, y, z = [i * value for i in [self.x, self.y, self.z]]
         return Vector(x, y, z)
 
+    def length(self):
+        return sqrt(self.x ** 2 + self.y ** 2 + self.z ** 2)
+
+    def normalize(self):
+        l = self.length()
+        if l == 0:
+            return self
+        factor = 1 / l
+        return self * factor
+
+    def dot(self, v):
+        return self.x * v.x + self.y * v.y + self.z * v.z
+
+    def cross(self, v):
+        x = self.y * v.z - self.z * v.y
+        y = self.z * v.x - self.x * v.z
+        z = self.x * v.y - self.y * v.x
+        return Vector(x, y, z)
+
